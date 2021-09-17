@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title>Tabelle bauen</title>
+			
+		<meta charset="utf-8">
+		</head>
+		<script>
+			"use strict";
+			function programm() {
+			// Quellcode
+            var vStart=1000;
+			var vMenge;
+			var vEnde;
+			var vBemerkung;	
+			var vGewinn;
+			var vErlöse;
+			var vKosten;
+			var vkostenFix;
+			var vproduktionsmenge;
+			var vStückpreis;
+			var vKostenvariabel;
+			var vAusgabe="";
+
+
+
+			vKostenvariabel=parseFloat(document.getElementById("idkostenVariabel").value);
+			vMenge=parseFloat(document.getElementById("idproduktionsmenge").value);
+			vStückpreis =parseFloat(document.getElementById("idStückpreis").value);
+			vkostenFix =parseFloat(document.getElementById("idkostenFix").value);
+
+			
+			vAusgabe=vAusgabe+ "<table border=1>";
+			vAusgabe = vAusgabe + "<tr><th>Menge</td><th>Kosten</td><th>Erlöse</td><th>Gewinn </td><th>Bemerkung </td></td></td>      </tr>";
+			
+
+			while (vStart<=vMenge) {
+
+				
+				vKosten= vkostenFix + vKostenvariabel * vStart;
+                vErlöse = vStückpreis* vStart;
+                vGewinn = vErlöse- vKosten;
+
+        
+             if (vGewinn<0){
+
+				vAusgabe = vAusgabe + "<tr><td>"+ vStart +"</td><td>"+vKosten+"</td><td>"+vErlöse+"</td><td style=color:red>"+vGewinn+ "</td><td>"+"verlustzone"+"</td></tr>";
+        	}
+			   else{
+
+				vAusgabe = vAusgabe + "<tr><td>"+vStart+"</td><td>"+vKosten+"</td><td>"+vErlöse+"</td><td >"+vGewinn+ "</td><td>"+"Gewinnzone"+"</td></tr>";
+
+			   }
+vStart=vStart+1000;
+			
+}
+		vAusgabe=vAusgabe +"</Table>";	
+
+			document.getElementById("idAusgabe").innerHTML= vAusgabe;
+		}
+
+		</script>
+
+
+	<body>
+		
+		<h1>Gewinn und Erlösfunktion </h1>
+		kosten-Variabel: <input id="idkostenVariabel" type="text" value="4.50">
+		 kosten-Fix: <input id="idkostenFix" type="text" value="12000"></br>
+		
+     produktionsmenge: <input id="idproduktionsmenge" type="text" value="20000">
+	   Stückpreis: <input id="idStückpreis" type="text" value="6"></br>
+		<button onClick="programm();">Kostentabelle!</button><br/><br/>
+        <div id="idAusgabe"></div>
+	</body>
+</html>
